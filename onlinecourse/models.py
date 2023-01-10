@@ -129,7 +129,7 @@ class Question(models.Model):
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice = models.TextField()
-    is_correct = 
+    is_correct = True
 
 
 # <HINT> The submission model
