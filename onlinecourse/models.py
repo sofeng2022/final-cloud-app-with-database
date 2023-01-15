@@ -104,7 +104,7 @@ class Enrollment(models.Model):
 class Question(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     question = models.TextField()
-    grade = models.FloatField(default=1.0)
+    grade = models.FloatField()
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     # Foreign key to lesson
     # question text
@@ -131,6 +131,9 @@ class Choice(models.Model):
     choice = models.TextField()
     is_correct = True
 
+def __str__(self):
+        return self.question    
+
 
 # <HINT> The submission model
 # One enrollment could have multiple submission
@@ -138,5 +141,5 @@ class Choice(models.Model):
 # One choice could belong to multiple submissions
 class Submission(models.Model):
     enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
-    choices = models.ManyToManyField(Choice)
+    choice = models.ManyToManyField(Choice)
 #    Other fields and methods you would like to design
