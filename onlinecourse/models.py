@@ -103,7 +103,7 @@ class Enrollment(models.Model):
     # Other fields and methods you would like to design
 class Question(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    question = models.TextField()
+    content = models.TextField()
     grade = models.FloatField()
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     # Foreign key to lesson
@@ -128,8 +128,8 @@ class Question(models.Model):
     # Other fields and methods you would like to design
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice = models.TextField()
-    is_correct = True
+    content = models.TextField()
+    is_correct = models.BooleanField(default=False)
 
 def __str__(self):
         return self.question    
@@ -141,5 +141,5 @@ def __str__(self):
 # One choice could belong to multiple submissions
 class Submission(models.Model):
     enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
-    choice = models.ManyToManyField(Choice)
+    choices = models.ManyToManyField(Choice)
 #    Other fields and methods you would like to design

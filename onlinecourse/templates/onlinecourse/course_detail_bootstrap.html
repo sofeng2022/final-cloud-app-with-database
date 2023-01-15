@@ -64,7 +64,7 @@
             <form id="questionform" action="{% url 'onlinecourse:submit' course.id %}" method="POST">
                 {% for question in course.question_set.all %}
                 <div class="card mt-1">
-                    <div class="card-header"><h5>{{ question.question }}</h5></div>
+                    <div class="card-header"><h5>{{ question.content }}</h5></div>
                         {% csrf_token %}
                         <div class="form-group">
                             {% for choice in question.choice_set.all %}
@@ -72,7 +72,7 @@
                                 <label class="form-check-label">
                                     <input type="checkbox" name="choice_{{choice.id}}"
                                            class="form-check-input" id="{{choice.id}}"
-                                           value="{{choice.id}}">{{ choice.choice }}
+                                           value="{{choice.id}}">{{ choice.content }}
                                 </label>
                             </div>
                             {% endfor %}
